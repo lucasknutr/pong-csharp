@@ -1,14 +1,58 @@
-[gd_scene load_steps=2 format=3 uid="uid://cuasji8ylscwk"]
+[gd_scene load_steps=5 format=3 uid="uid://cuasji8ylscwk"]
 
 [ext_resource type="PackedScene" uid="uid://bnpt25foy0dxb" path="res://scenes/player.tscn" id="1_sxdkp"]
+[ext_resource type="PackedScene" uid="uid://clsaieioj5qlg" path="res://scenes/wall.tscn" id="2_4d3ve"]
+[ext_resource type="PackedScene" uid="uid://bio0kc48apk7j" path="res://scenes/ball.tscn" id="3_7cicq"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_flpqj"]
+font_size = 72
 
 [node name="Game" type="Node2D"]
 
-[node name="Player" parent="." instance=ExtResource("1_sxdkp")]
+[node name="Player" parent="." groups=["players"] instance=ExtResource("1_sxdkp")]
 position = Vector2(30, 225)
 up_direction = Vector2(1, -1e-06)
 
-[node name="Player2" parent="." instance=ExtResource("1_sxdkp")]
+[node name="Player2" parent="." groups=["players"] instance=ExtResource("1_sxdkp")]
 position = Vector2(1100, 225)
 up_direction = Vector2(1, 0)
 IdPlayer = 2
+
+[node name="Wall" parent="." groups=["walls"] instance=ExtResource("2_4d3ve")]
+
+[node name="Wall2" parent="." groups=["walls"] instance=ExtResource("2_4d3ve")]
+position = Vector2(3, 649)
+
+[node name="Ball" parent="." instance=ExtResource("3_7cicq")]
+position = Vector2(556, 300)
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="VBoxContainer" type="HBoxContainer" parent="UI"]
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 40.0
+theme_override_constants/separation = 200
+alignment = 1
+
+[node name="LabelPlayer1" type="Label" parent="UI/VBoxContainer"]
+layout_mode = 2
+text = "0"
+label_settings = SubResource("LabelSettings_flpqj")
+
+[node name="LabelPlayer2" type="Label" parent="UI/VBoxContainer"]
+layout_mode = 2
+text = "0"
+label_settings = SubResource("LabelSettings_flpqj")
+
+[node name="Button" type="Button" parent="UI"]
+layout_mode = 0
+offset_left = 460.0
+offset_top = 452.0
+offset_right = 660.0
+offset_bottom = 502.0
+text = "Play"
