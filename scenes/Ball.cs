@@ -7,7 +7,7 @@ public partial class Ball : CharacterBody2D
 	int Speed = 300;
 	Vector2 direction;
 	public override void _Ready(){
-		direction = new Vector2(-1*Speed, 1*Speed);
+		direction = new Vector2(0,0);
 	}
 
 	public override void _PhysicsProcess(double delta){
@@ -30,5 +30,9 @@ public partial class Ball : CharacterBody2D
 		{
 			direction.Y = direction.Y * -1;
 		}
+	}
+
+	public void Start(){
+		direction = new Vector2(GD.RandRange(-2, 2) * Speed, GD.RandRange(-2, 2) * Speed);
 	}
 }
